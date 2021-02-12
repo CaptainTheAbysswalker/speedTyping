@@ -2,6 +2,8 @@ import { GETTEXT, REPLACE } from "../types";
 
 const intialState = {
   currentPos: 0,
+  mistakes: 0,
+  suces: true,
   text: [],
 };
 
@@ -11,8 +13,14 @@ export const textReducer = (state = intialState, action) => {
       return { ...state, text: action.payload };
     }
     case REPLACE: {
-      state.currentPos++;
-      return { ...state };
+      console.log();
+      if (state.text[state.currentPos] === action.payload) {
+        const newPos = state.currentPos + 1;
+        return { ...state, currentPos: newPos };
+      } else {
+        state.mistakes++;
+        return { ...state, succes: false };
+      }
     }
     default: {
       return { ...state };
