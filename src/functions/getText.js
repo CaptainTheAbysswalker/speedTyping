@@ -1,4 +1,4 @@
-import { GETTEXT, LOADED, REPLACE } from "../redux/types";
+import { GETTEXT, LOADED } from "../redux/types";
 
 export const getText = async (dispatch) => {
   const req = fetch(

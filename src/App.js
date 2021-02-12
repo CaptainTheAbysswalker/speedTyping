@@ -8,14 +8,27 @@ import { REPLACE } from "./redux/types";
 
 function App() {
   const isLoaded = useSelector((state) => state.stateReducer.isLoaded);
+
   const dispatch = useDispatch();
+
+  const checkSymbol = (key) => {
+    dispatch({ type: REPLACE, payload: key });
+  };
+
   useEffect(() => {
     getText(dispatch);
     document.addEventListener("keypress", (event) => {
-      dispatch({ type: REPLACE });
+      checkSymbol(event.key);
     });
   }, []);
 
+  useEffect(() => {
+    return () => {
+      document.removeEventListener("keypress", (event) => {
+        checkSymbol(event.key);
+      });
+    };
+  }, []);
   return (
     <div className="App">
       {isLoaded && <Text />}
