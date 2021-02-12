@@ -5,3 +5,5 @@ export const LOADED = "APP/LOADED";
 export const RUNTIMER = "APP/RUNTIMER";
 
 export const INCREASETIMER = "APP/INCREASETIMER";
+
+export const TRYAGAIN = "APP/TRYAGAIN";

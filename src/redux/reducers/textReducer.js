@@ -1,4 +1,4 @@
-import { GETTEXT, INCREASETIMER, REPLACE } from "../types";
+import { GETTEXT, INCREASETIMER, REPLACE, TRYAGAIN } from "../types";
 
 const intialState = {
   currentPos: 0,
@@ -28,6 +28,9 @@ export const textReducer = (state = intialState, action) => {
     }
     case INCREASETIMER: {
       return { ...state, timer: action.payload };
+    }
+    case TRYAGAIN: {
+      return { ...intialState };
     }
     default: {
       return { ...state };

@@ -1,5 +1,7 @@
 import { React, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getText } from "../../functions/getText";
+import { TRYAGAIN } from "../../redux/types";
 
 import "./result.css";
 
@@ -7,6 +9,7 @@ const Result = (props) => {
   const time = useSelector((state) => state.textReducer.timer);
   const currentPos = useSelector((state) => state.textReducer.currentPos);
   const mistakes = useSelector((state) => state.textReducer.mistakes);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     clearInterval(props.id.current);
@@ -24,7 +27,15 @@ const Result = (props) => {
             Speed: {`${Math.round((currentPos / time) * 60)} s/m`}
           </div>
         </div>
-        <button className="button">Try again</button>
+        <button
+          className="button"
+          onClick={() => {
+            dispatch({ type: TRYAGAIN });
+            getText(dispatch);
+          }}
+        >
+          Try again
+        </button>
       </div>
     </div>
   );
