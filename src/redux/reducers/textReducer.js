@@ -4,8 +4,8 @@ const intialState = {
   currentPos: 0,
   mistakes: 0,
   succes: true,
-  timer: 8,
-  text: [],
+  timer: 0,
+  text: [[]],
 };
 
 export const textReducer = (state = intialState, action) => {
