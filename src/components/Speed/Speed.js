@@ -8,7 +8,7 @@ const Speed = () => {
   const currentPos = useSelector((state) => state.textReducer.currentPos);
 
   const mathSpeed = () => {
-    if (currentPos === 0) {
+    if (currentPos === 0 || time === 0) {
       return `0 s/m`;
     } else {
       return `${Math.round((currentPos / time) * 60)} s/m`;
