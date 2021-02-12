@@ -1,6 +1,8 @@
 import { React } from "react";
 import { useSelector } from "react-redux";
 
+import "./text.css";
+
 const Text = (props) => {
   const text = useSelector((state) => state.textReducer.text);
   const currentPos = useSelector((state) => state.textReducer.currentPos);

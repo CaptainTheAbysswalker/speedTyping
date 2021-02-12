@@ -1,0 +1,25 @@
+.text{
+    padding: 5px 10px;
+    width: 500px;
+    height: 322px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 1rem;
+  }
+  .succes{
+    background-color: rgb(0, 255, 0);
+  }
+  .defaultText{
+    color:black;
+    min-width: 10px;
+  }
+  
+  .currentSymbol{
+    border: 1px solid rgb(0, 255, 0);
+  }
+  
+  .mistake{
+    border: 1px solid red;
+  }
+  
