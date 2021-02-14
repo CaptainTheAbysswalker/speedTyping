@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Loader from "./components/Loader/Loader";
@@ -7,13 +8,29 @@ import Stats from "./components/Stats/Stats";
 import Text from "./components/Text/Text";
 import { getText } from "./functions/getText";
 import { INCREASETIMER, REPLACE, RUNTIMER } from "./redux/types";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const isLoaded = useSelector((state) => state.stateReducer.isLoaded);
-  const isRun = useSelector((state) => state.stateReducer.isRun);
-  const timerId = useRef(0);
+  let timerId = useRef(0);
   const textLength = useSelector((state) => state.textReducer.text.length);
   const currentPos = useSelector((state) => state.textReducer.currentPos);
+
+  const generator = useCallback(() => {
+    document.addEventListener(
+      "keypress",
+      () => {
+        dispatch({ type: RUNTIMER });
+        let counter = 0;
+        timerId.current = setInterval(() => {
+          counter++;
+          dispatch({ type: INCREASETIMER, payload: counter });
+        }, 1000);
+        console.log(timerId);
+      },
+      { once: true }
+    );
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -27,35 +44,33 @@ function App() {
     document.addEventListener("keypress", (event) => {
       checkSymbol(event.key);
     });
-    document.addEventListener(
-      "keypress",
-      () => {
-        if (!isRun) {
-          dispatch({ type: RUNTIMER });
-          let counter = 0;
-          timerId.current = setInterval(() => {
-            counter++;
-            dispatch({ type: INCREASETIMER, payload: counter });
-          }, 1000);
-        }
-      },
-      { once: true }
-    );
-  }, []);
+    generator();
 
-  useEffect(() => {
     return () => {
       document.removeEventListener("keypress", (event) => {
         checkSymbol(event.key);
       });
     };
   }, []);
+
   return (
     <div className="App">
+      <Container>
+        <Row>
+          <Col>
+            {isLoaded && <Text />}
+            {!isLoaded && <Loader />}
+          </Col>
+        </Row>
+      </Container>
       <Stats />
-      {textLength === currentPos && <Result id={timerId} />}
-      {isLoaded && <Text />}
-      {!isLoaded && <Loader />}
+      {textLength === currentPos && <Result id={timerId} timer={generator} />}
+
+      <footer>
+        <a href="https://captaintheabysswalker.github.io/card/" target="blank">
+          @CaptainTheAbysswalker
+        </a>
+      </footer>
     </div>
   );
 }
