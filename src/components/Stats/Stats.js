@@ -1,16 +1,15 @@
 import { React } from "react";
+import { Card } from "react-bootstrap";
 import Mistakes from "../Mistakes/Mistakes";
 import Speed from "../Speed/Speed";
 
-import "./stats.css";
-
 const Stats = () => {
   return (
-    <div className="stats">
-      <h3>Stats</h3>
+    <Card style={{ width: "15rem", alignItems: "center" }}>
+      <Card.Title>Stats</Card.Title>
       <Mistakes />
       <Speed />
-    </div>
+    </Card>
   );
 };
 
