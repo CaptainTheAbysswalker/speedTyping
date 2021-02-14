@@ -1,9 +1,9 @@
 # Getting Started 
 # Install
 
-# git clone https://github.com/CaptainTheAbysswalker/speedTyping.git
+git clone https://github.com/CaptainTheAbysswalker/speedTyping.git
 
-# npm install
+npm install
 
 
 ### `npm start`
