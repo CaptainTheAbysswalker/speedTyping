@@ -12,3 +12,9 @@
 }
 
 
+footer{
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
