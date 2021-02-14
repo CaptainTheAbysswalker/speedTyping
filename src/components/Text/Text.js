@@ -1,7 +1,6 @@
 import { React } from "react";
+import { Jumbotron, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
-
-import "./text.css";
 
 const Text = (props) => {
   const text = useSelector((state) => state.textReducer.text);
@@ -9,33 +8,37 @@ const Text = (props) => {
   const isSucces = useSelector((state) => state.textReducer.succes);
 
   return (
-    <div className="text">
+    <Jumbotron>
       {text.map((element, index) => {
         if (index === currentPos) {
           return (
-            <span
-              className={
-                isSucces ? "defaultText currentSymbol" : "defaultText mistake"
-              }
+            <Alert
               key={index}
+              variant={isSucces ? "info" : "danger"}
+              style={{ display: "inline", padding: 0, fontSize: "20px" }}
             >
               {element}
-            </span>
+            </Alert>
           );
         } else {
           return (
-            <span
-              className={
-                index < currentPos ? "defaultText succes" : "defaultText"
-              }
+            <Alert
               key={index}
+              variant={index < currentPos ? "success" : ""}
+              style={{
+                display: "inline",
+                padding: 0,
+                fontSize: "20px",
+                border: 0,
+                borderRadius: 0,
+              }}
             >
               {element}
-            </span>
+            </Alert>
           );
         }
       })}
-    </div>
+    </Jumbotron>
   );
 };
 
