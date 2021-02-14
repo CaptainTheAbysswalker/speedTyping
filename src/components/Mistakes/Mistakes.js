@@ -1,4 +1,5 @@
 import { React } from "react";
+import { ProgressBar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 import "./mistakes.css";
@@ -17,7 +18,12 @@ const Mistakes = () => {
 
   return (
     <div className="mistakeCounter">
-      <div>{mathAccuracy()}</div>
+      <h3>Accuracy</h3>
+      {mathAccuracy()}
+      <ProgressBar
+        now={100 - Math.round(100 / currentPos) * mistakes}
+        style={{ width: "122px" }}
+      />
     </div>
   );
 };
