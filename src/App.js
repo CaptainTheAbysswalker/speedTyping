@@ -57,13 +57,16 @@ function App() {
     <div className="App">
       <Container>
         <Row>
-          <Col>
+          <Col xs={8}>
             {isLoaded && <Text />}
             {!isLoaded && <Loader />}
           </Col>
+          <Col>
+            <Stats />
+          </Col>
         </Row>
       </Container>
-      <Stats />
+
       {textLength === currentPos && <Result id={timerId} timer={generator} />}
 
       <footer>
