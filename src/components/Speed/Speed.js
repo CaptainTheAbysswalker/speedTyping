@@ -17,6 +17,7 @@ const Speed = () => {
 
   return (
     <div className="speedCounter">
+      <h3>Speed</h3>
       <div>{mathSpeed()}</div>
     </div>
   );
